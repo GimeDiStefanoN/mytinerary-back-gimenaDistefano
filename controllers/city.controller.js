@@ -72,11 +72,43 @@ const controller = {
         }
     },
 
-    updateCity: ()=>{ // MODIFICAR CIUDAD
+    updateCity: async (req,res)=>{ // MODIFICAR CIUDAD
+        try{
+            //findOneAndUpdate: busca elemento por algun parametro y actualiza. retorna el elemento antes de actualizarse o ya actualizado
+            //findByAndUpdate: busca elemento por su ID y actualiza. retorna el elemento antes de actualizarse o ya actualizado
+            //updateOne: actualiza el elemento directamente
+            //updateMany: actualiza varios elementos directamente
 
+            await Cities.updateOne({_id: req.params.id}, req.body)
+
+            return res.status(200).json({
+                success: true,
+                message: 'City updated'
+            })
+        
+        } catch(error){
+            console.log(error);
+            return res.status(500).json({
+                success: false,
+                message: 'error update city'
+            })
+        }
     },
-    deleteCity: ()=>{ //BORRAR CIUDAD
+    deleteCity: async (req,res)=>{ //BORRAR CIUDAD
+        try{
+            await Cities.deleteOne({_id: req.params.id})
 
+            return res.status(200).json({
+                success: true,
+                message: 'City deleted'
+            })
+        }catch(error){
+            console.log(error);
+            return res.status(500).json({
+                success: false,
+                message: 'error delete city'
+            })
+        }
     },
 }
 
