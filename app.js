@@ -1,4 +1,4 @@
-//import 'dotenv/config.js';
+import 'dotenv/config.js';
 import './config/db.js'; //siempre desp del dotenv
 
 import express from "express";
@@ -8,8 +8,8 @@ import cors from 'cors';
 import indexRouter from './router/index.router.js';
 
 const app = express();
-const PORT = 8000
-//process.env.PORT
+const PORT = process.env.PORT || 3000;
+
 
 //midlwares
 app.use(express.json());
