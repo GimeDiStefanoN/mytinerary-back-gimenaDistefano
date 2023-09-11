@@ -21,7 +21,6 @@ const controller = {
                 message: 'error creating User'
             })
         }
-
     },
     deleteUsers: ()=>{
 

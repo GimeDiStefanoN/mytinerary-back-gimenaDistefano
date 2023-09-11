@@ -13,7 +13,7 @@ const controller = {
         }
 
         try{
-            const allCities= await Cities.find(queries)
+            const allCities= await Cities.find(queries).populate('itineraries')
             if(allCities.length>0){
                 return res.status(200).json({
                     success: true,

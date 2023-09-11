@@ -11,7 +11,8 @@ const schema = new Schema({
     alt: { type: String, required: true },
     description: { type: String, required: true },
     currencies: { type: String, required: true },
-    languages: { type: String, required: true }
+    languages: { type: String, required: true },
+    itineraries: [{type:Types.ObjectId, ref: 'itineraries'}],
 },{
     timestamps: true
 })

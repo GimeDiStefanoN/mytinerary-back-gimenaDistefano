@@ -4,7 +4,13 @@ const collection= 'users';
 
 const schema = new Schema({
     name: {type: String, required: true},
-    image: {type: String}
+    lastname: {type: String, required: true},
+    email: {type: String, required: true},
+    password: {type: String, required: true},
+    photo: {type: String},
+    place: {type: String},
+    rol: { type: String},
+    itineraries: [{type:Types.ObjectId, ref: 'itineraries'}]
 },
 {
     timestamps: true
