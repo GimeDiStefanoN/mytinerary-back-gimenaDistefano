@@ -14,6 +14,23 @@ const controller = {
                 itineraries = await Itinerary.find(queries)
                     .populate('city')
                     .populate('user');
+
+                    if (itineraries.length > 0) {
+                        const itinerariesWithUserData = itineraries.map((itinerary) => ({
+                            ...itinerary._doc,
+                            user: {
+                                _id: itinerary.user._id,
+                                name: itinerary.user.name,
+                                photo: itinerary.user.photo,
+
+                            },
+                        }));
+    
+                        return res.status(200).json({
+                            success: true,
+                            itineraries: itinerariesWithUserData,
+                        });
+                    }
             } else {
                 itineraries = await Itinerary.find(queries);
             }
@@ -96,6 +113,8 @@ const controller = {
                 .populate('user');
 
             if (oneItinerary) {
+
+                
                 return res.status(200).json({
                     success: true,
                     itinerary: oneItinerary

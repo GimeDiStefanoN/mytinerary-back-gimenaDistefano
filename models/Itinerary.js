@@ -10,7 +10,10 @@ const schema = new Schema({
     hashtags: [String],
     likes: {type: Number, default: 0},
     user: {type:Types.ObjectId, ref: 'users'},
-   
+    guide: {
+        name: { type: String},
+        photo: { type: String},
+    },
     comments: [{
         name: { type: String},
         photo: { type: String},
