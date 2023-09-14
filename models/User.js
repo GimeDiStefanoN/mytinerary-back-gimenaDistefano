@@ -10,7 +10,10 @@ const schema = new Schema({
     photo: {type: String},
     place: {type: String},
     rol: { type: String},
-    itineraries: [{type:Types.ObjectId, ref: 'itineraries'}]
+    itineraries: [{type:Types.ObjectId, ref: 'itineraries'}],
+    online: {type: Boolean, default: false},
+    verified: {type: Boolean, default: true},
+    verified_code: {type: String},
 },
 {
     timestamps: true

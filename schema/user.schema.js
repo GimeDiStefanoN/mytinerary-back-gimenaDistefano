@@ -11,7 +11,7 @@ export const createUserSchema = Joi.object({
             }),
     password: Joi.string()
                 .required()
-                .min(6)
+                .min(5)
                 .max(35)
                 .alphanum()
                 .messages({
