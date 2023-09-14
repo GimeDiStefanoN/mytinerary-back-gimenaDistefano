@@ -38,7 +38,7 @@ const controller = {
                     name: user.name,
                     photo: user.photo
                 },
-                process.env.SECRET,
+                process.env.SECRET_TOKEN,
                 {
                     expiresIn: "10h" 
                 }
@@ -59,6 +59,27 @@ const controller = {
             res.status(500).json({
                 success: false,
                 message: 'Error Login User'
+            })
+        }
+    },
+
+    signout: async (req,res,next)=>{
+        try{
+            const user = await User.findOneAndUpdate(
+                { email: req.user.email },
+                { online: false },
+                { new: true }
+            )
+
+            res.status(200).json({
+                success:true,
+                message:' Logout Ok',
+            })
+
+        }catch(error){
+            res.status(500).json({
+                success: false,
+                message: 'Error Logout User'
             })
         }
     }

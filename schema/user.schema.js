@@ -33,5 +33,17 @@ export const createUserSchema = Joi.object({
             .uri()
             .messages({
                 'any.required': ' The photo must be a web address',
-            })
+            }),
+            rol: Joi.string() // Campo "rol" ahora es opcional
+                .optional()
+                .allow('') // Permitir cadenas vacías
+                .messages({
+                    'string.empty': ' The role field can be empty',
+                }),
+            place: Joi.string() // Campo "place" ahora es opcional
+                .optional()
+                .allow('') // Permitir cadenas vacías
+                .messages({
+                    'string.empty': ' The place field can be empty',
+                }),
 })
