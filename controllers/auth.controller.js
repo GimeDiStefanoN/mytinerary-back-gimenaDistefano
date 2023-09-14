@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import bcryptjs from 'bcryptjs';
 import User from '../models/User.js';
-
+import jwt from 'jsonwebtoken';
 
 const controller = {
     signup: async (req, res, next)=>{
@@ -30,6 +30,19 @@ const controller = {
                 {online: true},
                 {new: true}
             )
+            
+            const token = jwt.sign(
+                {
+                    id: user._id,
+                    email: user.email,
+                    name: user.name,
+                    photo: user.photo
+                },
+                process.env.SECRET,
+                {
+                    expiresIn: "10h" 
+                }
+            )
 
             user.password = null;
             
@@ -38,7 +51,7 @@ const controller = {
                 message:' Login Ok',
                 response: {
                     user,
-                    // token
+                    token
                 }
             })
 
